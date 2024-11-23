@@ -1,6 +1,12 @@
-const getAllPosts =  (req, res) => {
-    console.log("All posts");
-    res.send("All posts");
-    }
+const Posts = require("../models/post.js");
 
-module.exports = {  getAllPosts }; 
+const createPost = (req, res) => {
+  Posts.create({
+    title: req.body.title,
+    content: req.body.content,
+    owner: req.body.owner,
+  });
+  res.send("Post created");
+};
+
+module.exports = { createPost };
