@@ -8,9 +8,11 @@ app.get('/', (req, res) => {
   res.send('Hello World!');
 });
 
-const postsRoute = require('./routes/posts_route');
+const postsRoute = require('./src/routes/posts_route');
+const commentsRoute = require('./src/routes/comment_route');
 
-app.use('/', postsRoute);
+app.use('/posts', postsRoute);
+app.use('/comments', commentsRoute);
 
 app.listen(port, () => {
   console.log(`app listening at http://localhost:${port}`);
