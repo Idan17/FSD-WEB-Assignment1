@@ -9,9 +9,10 @@ GET http://localhost:3000/posts
 
 POST http://localhost:3000/posts
 Content-Type: application/json
-{
-    "title": "foo",
-    "content": "bar",
-    "owner": "baz"
-}
 
+{
+    "title": "test_title",
+    "content": "test_content",
+    "owner": "bla"
+}
+###

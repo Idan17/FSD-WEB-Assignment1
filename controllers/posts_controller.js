@@ -6,7 +6,6 @@ const getAllPosts = (req, res) => {
 };
 
 const createPost = (req, res) => {
-  console.log(req.body);
   Posts.create({
     title: req.body.title,
     content: req.body.content,
