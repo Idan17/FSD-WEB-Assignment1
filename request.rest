@@ -16,3 +16,7 @@ Content-Type: application/json
     "owner": "bla"
 }
 ###
+
+GET http://localhost:3000/posts/
+
+###
