@@ -11,9 +11,9 @@ POST http://localhost:3000/posts
 Content-Type: application/json
 
 {
-    "title": "test_title",
+    "title": "test_title2",
     "content": "test_content",
-    "owner": "bla"
+    "sender": "bla"
 }
 ###
 
@@ -23,3 +23,5 @@ GET http://localhost:3000/posts/
 GET http://localhost:3000/posts/6741e90dc1df651cd0055a
 
 ###
+
+GET http://localhost:3000/posts?sender=bla
