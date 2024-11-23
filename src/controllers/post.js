@@ -5,20 +5,11 @@ const createPost = async (req, res) => {
     const post = await Posts.create({
       title: req.body.title,
       content: req.body.content,
-      owner: req.body.owner,
+      sender: req.body.sender,
     });
     res.status(200).json(post);
   } catch (error) {
     res.status(500).send("Error creating post", error);
-  }
-};
-
-const getAllPosts = async (req, res) => {
-  try {
-    const posts = await Posts.find();
-    res.status(200).json(posts);
-  } catch (error) {
-    res.status(500).send("Error fetching posts", error);
   }
 };
 
@@ -32,8 +23,20 @@ const getPostById = async (req, res) => {
     }
     res.status(200).json(post);
   } catch (error) {
-    res.status(500).json({ message: "Error fetching comment", error });
+    res.status(500).json({ message: "Error fetching post", error });
   }
 };
 
-module.exports = { createPost, getAllPosts, getPostById };
+const getPosts = async (req, res) => {
+  try {
+    if (req.query.sender) {
+      posts = await Posts.find({ sender: req.query.sender });
+    } else {
+      posts = await Posts.find();
+    }
+    res.status(200).json(posts);
+  } catch (error) {
+    res.status(500).json({ message: "Error fetching Posts", error });
+  }
+};
+module.exports = { createPost, getPosts, getPostById };
