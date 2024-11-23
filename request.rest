@@ -20,3 +20,6 @@ Content-Type: application/json
 GET http://localhost:3000/posts/
 
 ###
+GET http://localhost:3000/posts/6741e90dc1df651cd0055a
+
+###
