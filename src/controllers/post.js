@@ -9,4 +9,13 @@ const createPost = (req, res) => {
   res.send("Post created");
 };
 
-module.exports = { createPost };
+const getAllPosts = async (req, res) => {
+    try {
+      const posts = await Posts.find();
+      res.send(posts);
+    } catch (error) {
+      res.status(500).send("Error fetching posts", error);
+    }
+  };
+
+module.exports = { createPost, getAllPosts };
