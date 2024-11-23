@@ -42,8 +42,29 @@ const createComment = async (req, res) => {
     }
   };
 
+  // UPDATE a comment by ID
+const updateComment = async (req, res) => {
+  const { id } = req.params;
+  const { content, author } = req.body;
+
+  try {
+    const updatedComment = await Comment.findByIdAndUpdate(
+      id,
+      { content, author },
+      { new: true }
+    );
+    if (!updatedComment) {
+      return res.status(404).json({ message: 'Comment not found' });
+    }
+    res.status(200).json(updatedComment);
+  } catch (error) {
+    res.status(500).json({ message: 'Error updating comment', error });
+  }
+};
+
 module.exports = { 
   getComments,
   getCommentById,
-  createComment
+  createComment,
+  updateComment
 }; 
