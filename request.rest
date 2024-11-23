@@ -25,3 +25,15 @@ GET http://localhost:3000/posts/6741e90dc1df651cd0055a
 ###
 
 GET http://localhost:3000/posts?sender=bla
+
+###
+
+PUT http://localhost:3000/posts/6741fcf3ba914a89936daca7
+Content-Type: application/json
+
+{
+    "title": "test_title3"
+}
+
+###
+

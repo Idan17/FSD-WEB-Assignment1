@@ -39,4 +39,23 @@ const getPosts = async (req, res) => {
     res.status(500).json({ message: "Error fetching Posts", error });
   }
 };
-module.exports = { createPost, getPosts, getPostById };
+
+const updatePost = async (req, res) => {
+  const id = req.params.id;
+  const { title, content, sender } = req.body;
+  try {
+    const updatedPost = await Posts.findByIdAndUpdate(
+      id,
+      { title, content, sender },
+      { new: true }
+    );
+    if (!updatedPost) {
+      return res.status(404).json({ message: "Post not found" });
+    }
+    res.status(200).json(updatedPost);
+  } catch (error) {
+    res.status(500).json({ message: "Error updating post", error });
+  }
+};
+
+module.exports = { createPost, getPosts, getPostById, updatePost };
