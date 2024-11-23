@@ -9,10 +9,10 @@ app.get('/', (req, res) => {
 });
 
 const postsRoute = require('./src/routes/posts_route');
-const commentsRoute = require('./src/routes/comment_route');
+const commentRoute = require('./src/routes/comment_route');
 
 app.use('/posts', postsRoute);
-app.use('/comments', commentsRoute);
+app.use('/comment', commentRoute);
 
 app.listen(port, () => {
   console.log(`app listening at http://localhost:${port}`);
