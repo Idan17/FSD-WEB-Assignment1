@@ -52,6 +52,10 @@ const updateComment = async (req, res) => {
   const { id } = req.params;
   const { content, author } = req.body;
 
+  if (!mongoose.Types.ObjectId.isValid(id)) {
+    return res.status(400).json({ error: "Invalid id" });
+  }
+  
   try {
     const updatedComment = await Comment.findByIdAndUpdate(
       id,

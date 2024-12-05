@@ -48,6 +48,11 @@ const getPosts = async (req, res) => {
 const updatePost = async (req, res) => {
   const id = req.params.id;
   const { title, content, sender } = req.body;
+
+  if (!mongoose.Types.ObjectId.isValid(id)) {
+    return res.status(400).json({ error: "Invalid id" });
+  }
+  
   try {
     const updatedPost = await Posts.findByIdAndUpdate(
       id,

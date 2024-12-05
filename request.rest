@@ -14,15 +14,15 @@ GET http://localhost:3000/posts/
 
 ###
 // GET post by id
-GET http://localhost:3000/posts/6751ccd6764d3be8c8593a03
+GET http://localhost:3000/posts/6751deefa2829a7d55402505
 
 ###
 // GET post by sender
-GET http://localhost:3000/posts?sender=bla
+GET http://localhost:3000/posts?sender=test_sender
 
 ###
 // UPDATE post by id
-PUT http://localhost:3000/posts/6741fcf3ba914a89936daca7
+PUT http://localhost:3000/posts/6751deefa2829a7d55402505
 Content-Type: application/json
 
 {
@@ -45,13 +45,13 @@ GET http://localhost:3000/comments/
 
 ###
 // GET comment by id
-GET http://localhost:3000/comments/6751ccd6764d3be8c8593a03
+GET http://localhost:3000/comments/6751ccd6764d3be8c8593aaa
 
 ###
 // UPDATE comment by id
-PUT http://localhost:3000/comments/6751ccd6764d3be8c8593a03
+PUT http://localhost:3000/comments/6751e00658dd212aca28716d
 Content-Type: application/json
 
 {
-    "title": "test_title3"
+    "author": "idan"
 }
