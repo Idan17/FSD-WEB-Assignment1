@@ -30,7 +30,11 @@ Content-Type: application/json
 }
 
 ###
+<<<<<<< HEAD
 //CREATE new comment
+=======
+//CREATE new Comment
+>>>>>>> c2b1c7763f01654c3e06536dc4787a39eb709e0f
 POST http://localhost:3000/comments
 Content-Type: application/json
 
