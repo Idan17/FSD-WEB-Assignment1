@@ -14,8 +14,8 @@ db.once("open", () => console.log("connected to database"));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
-const postsRoute = require("./src/routes/posts_route");
-const commentsRoute = require("./src/routes/comment_route");
+const postsRoute = require("./src/routes/post");
+const commentsRoute = require("./src/routes/comment");
 
 app.use("/comments", commentsRoute);
 app.use("/posts", postsRoute);
