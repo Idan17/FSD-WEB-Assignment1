@@ -14,7 +14,7 @@ GET http://localhost:3000/posts/
 
 ###
 // GET post by id
-GET http://localhost:3000/posts/6741e90dc1df651cd0055a
+GET http://localhost:3000/posts/6751ccd6764d3be8c8593a03
 
 ###
 // GET post by sender

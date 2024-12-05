@@ -1,4 +1,5 @@
 const Posts = require("../models/post.js");
+const mongoose = require("mongoose");
 
 const createPost = async (req, res) => {
   try {
@@ -7,19 +8,23 @@ const createPost = async (req, res) => {
       content: req.body.content,
       sender: req.body.sender,
     });
-    res.status(201).json(post);
+    res.status(200).json(post);
   } catch (error) {
     res.status(500).send("Error creating post", error);
   }
 };
 
 const getPostById = async (req, res) => {
-  const id = req.params.id;
+  const { id } = req.params;
+
+  if (!mongoose.Types.ObjectId.isValid(id)) {
+    return res.status(400).json({ error: "Invalid id" });
+  }
 
   try {
     const post = await Posts.findById(id);
     if (!post) {
-      return res.status(404).json({ message: "Post not found" });
+      return res.status(404).json({ message: "Post is not found" });
     }
     res.status(200).json(post);
   } catch (error) {
