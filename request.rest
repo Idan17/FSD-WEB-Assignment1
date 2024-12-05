@@ -26,7 +26,7 @@ PUT http://localhost:3000/posts/6751deefa2829a7d55402505
 Content-Type: application/json
 
 {
-    "title": "test_title3"
+    "title": "test_new_title"
 }
 
 ###
@@ -45,7 +45,7 @@ GET http://localhost:3000/comments/
 
 ###
 // GET comment by id
-GET http://localhost:3000/comments/6751ccd6764d3be8c8593aaa
+GET http://localhost:3000/comments/6751e00658dd212aca28716d
 
 ###
 // UPDATE comment by id
@@ -53,5 +53,6 @@ PUT http://localhost:3000/comments/6751e00658dd212aca28716d
 Content-Type: application/json
 
 {
+    "content": "test_new_content",
     "author": "idan"
 }
