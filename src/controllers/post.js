@@ -24,6 +24,10 @@ const createPost = async (req, res) => {
 const getPostById = async (req, res) => {
   const id = req.params.id;
 
+  if (!id) {
+    return res.status(400).json({ message: "id is required" });
+  }
+
   try {
     const post = await Posts.findById(id);
     if (!post) {
@@ -51,6 +55,13 @@ const getPosts = async (req, res) => {
 const updatePost = async (req, res) => {
   const id = req.params.id;
   const { title, content, sender } = req.body;
+  
+  if (!title || !content || !sender) {
+    return res
+      .status(400)
+      .json({ message: "Title, content and sender are required" });
+  }
+
   try {
     const updatedPost = await Posts.findByIdAndUpdate(
       id,
