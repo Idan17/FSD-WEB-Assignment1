@@ -30,11 +30,7 @@ Content-Type: application/json
 }
 
 ###
-<<<<<<< HEAD
 //CREATE new comment
-=======
-//CREATE new Comment
->>>>>>> c2b1c7763f01654c3e06536dc4787a39eb709e0f
 POST http://localhost:3000/comments
 Content-Type: application/json
 
@@ -60,3 +56,8 @@ Content-Type: application/json
     "content": "test_title3",
     "author": "idan"
 }
+
+###
+// DELETE comment by id
+DELETE  http://localhost:3000/comments/6751ccd6764d3be8c8593a03
+Content-Type: application/json
