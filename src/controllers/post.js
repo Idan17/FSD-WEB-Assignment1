@@ -24,8 +24,8 @@ const createPost = async (req, res) => {
 const getPostById = async (req, res) => {
   const id = req.params.id;
 
-  if (!id) {
-    return res.status(400).json({ message: "id is required" });
+  if (!mongoose.Types.ObjectId.isValid(id)) {
+    return res.status(400).json({ error: "Invalid id" });
   }
 
   try {
@@ -55,11 +55,15 @@ const getPosts = async (req, res) => {
 const updatePost = async (req, res) => {
   const id = req.params.id;
   const { title, content, sender } = req.body;
-  
-  if (!title || !content || !sender) {
+
+  if (!mongoose.Types.ObjectId.isValid(id)) {
+    return res.status(400).json({ error: "Invalid id" });
+  }
+
+  if (!title && !content && !sender) {
     return res
       .status(400)
-      .json({ message: "Title, content and sender are required" });
+      .json({ message: "Title, content or sender are required" });
   }
 
   try {
