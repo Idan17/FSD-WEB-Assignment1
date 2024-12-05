@@ -1,4 +1,5 @@
 const Comment = require('../models/comment');
+const mongoose = require("mongoose");
 
 // READ all comments
 const getComments = async (req, res) => {
@@ -14,6 +15,10 @@ const getComments = async (req, res) => {
 const getCommentById = async (req, res) => {
   const { id } = req.params;
 
+  if (!mongoose.Types.ObjectId.isValid(id)) {
+    return res.status(400).json({ error: "Invalid id" });
+  }
+  
   try {
     const comment = await Comment.findById(id);
     if (!comment) {
@@ -47,6 +52,10 @@ const updateComment = async (req, res) => {
   const { id } = req.params;
   const { content, author } = req.body;
 
+  if (!mongoose.Types.ObjectId.isValid(id)) {
+    return res.status(400).json({ error: "Invalid id" });
+  }
+  
   try {
     const updatedComment = await Comment.findByIdAndUpdate(
       id,

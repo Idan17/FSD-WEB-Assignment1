@@ -1,4 +1,5 @@
 const Posts = require("../models/post.js");
+const mongoose = require("mongoose");
 
 const createPost = async (req, res) => {
   try {
@@ -14,12 +15,16 @@ const createPost = async (req, res) => {
 };
 
 const getPostById = async (req, res) => {
-  const id = req.params.id;
+  const { id } = req.params;
+
+  if (!mongoose.Types.ObjectId.isValid(id)) {
+    return res.status(400).json({ error: "Invalid id" });
+  }
 
   try {
     const post = await Posts.findById(id);
     if (!post) {
-      return res.status(404).json({ message: "Post not found" });
+      return res.status(404).json({ message: "Post is not found" });
     }
     res.status(200).json(post);
   } catch (error) {
@@ -43,6 +48,11 @@ const getPosts = async (req, res) => {
 const updatePost = async (req, res) => {
   const id = req.params.id;
   const { title, content, sender } = req.body;
+
+  if (!mongoose.Types.ObjectId.isValid(id)) {
+    return res.status(400).json({ error: "Invalid id" });
+  }
+  
   try {
     const updatedPost = await Posts.findByIdAndUpdate(
       id,
