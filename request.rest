@@ -53,5 +53,6 @@ PUT http://localhost:3000/comments/6751ccd6764d3be8c8593a03
 Content-Type: application/json
 
 {
-    "title": "test_title3"
+    "content": "test_title3",
+    "author": "idan"
 }
