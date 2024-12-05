@@ -1,10 +1,19 @@
 const mongoose = require('mongoose');
 
 const commentSchema = new mongoose.Schema({
-  id: uuid,
-  content: String,
-  author: String,
-  createdAt: Date,
+  content: {
+    type: String,
+    required: true,
+    minlength: 1,
+  },
+  author: {
+    type: String,
+    required: true,
+  },
+  createdAt: {
+    type: Date,
+    default: Date.now,
+  },
 });
 
 const Comment = mongoose.model('Comment', commentSchema);
