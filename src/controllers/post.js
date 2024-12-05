@@ -7,7 +7,7 @@ const createPost = async (req, res) => {
       content: req.body.content,
       sender: req.body.sender,
     });
-    res.status(200).json(post);
+    res.status(201).json(post);
   } catch (error) {
     res.status(500).send("Error creating post", error);
   }

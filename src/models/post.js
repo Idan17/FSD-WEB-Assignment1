@@ -1,10 +1,20 @@
 const mongoose = require("mongoose");
-const Schema = mongoose.Schema;
 
-const postSchema = new Schema({
-  title: String,
-  content: String,
-  sender: String,
+const postSchema = new mongoose.Schema({
+  title: {
+    type: String,
+    required: true,
+    minlength: 1,
+  },
+  content: {
+    type: String,
+    required: true,
+  },
+  sender: {
+    type: String,
+    required: true,
+    minlength: 1,
+  },
 });
 
 const Posts = mongoose.model("Posts", postSchema);
