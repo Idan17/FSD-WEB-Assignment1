@@ -30,6 +30,11 @@ Content-Type: application/json
 }
 
 ###
+// DELETE post by id
+DELETE http://localhost:3000/posts/67532171fa7b6f0cd28a6f4d
+
+
+###
 //CREATE new comment
 POST http://localhost:3000/comments
 Content-Type: application/json
