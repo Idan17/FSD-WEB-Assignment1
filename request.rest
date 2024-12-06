@@ -14,20 +14,24 @@ GET http://localhost:3000/posts/
 
 ###
 // GET post by id
-GET http://localhost:3000/posts/6752a7a31fee67977fef8ff3
+GET http://localhost:3000/posts/6752a9f88e2e8f32d00cfcec
 
 ###
 // GET post by sender
-GET http://localhost:3000/posts?sender=test_sender2
+GET http://localhost:3000/posts?sender=test_sender
 
 ###
 // UPDATE post by id
-PUT http://localhost:3000/posts/6752a7a31fee67977fef8ff3
+PUT http://localhost:3000/posts/6752a9f88e2e8f32d00cfcec
 Content-Type: application/json
 
 {
     "title": "test_new_title"
 }
+
+###
+// DELETE post by id
+DELETE http://localhost:3000/posts/6752a9f88e2e8f32d00cfcec
 
 ###
 //CREATE new comment
@@ -45,11 +49,11 @@ GET http://localhost:3000/comments/
 
 ###
 // GET comment by id
-GET http://localhost:3000/comments/6752a7d11fee67977fef8ffd
+GET http://localhost:3000/comments/6752aa198e2e8f32d00cfcf5
 
 ###
 // UPDATE comment by id
-PUT http://localhost:3000/comments/6752a7d11fee67977fef8ffd
+PUT http://localhost:3000/comments/6752aa198e2e8f32d00cfcf5
 Content-Type: application/json
 
 {
@@ -59,5 +63,5 @@ Content-Type: application/json
 
 ###
 // DELETE comment by id
-DELETE  http://localhost:3000/comments/6752a7d11fee67977fef8ffd
+DELETE  http://localhost:3000/comments/6752aa198e2e8f32d00cfcf5
 Content-Type: application/json
