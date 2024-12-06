@@ -71,7 +71,7 @@ const updateComment = async (req, res) => {
   }
 };
 
-// DELETE a comment by ID
+// DELETE comment by ID
 const deleteComment = async (req, res) => {
   const { id } = req.params;
 
