@@ -1,6 +1,7 @@
 const Posts = require("../models/post.js");
 const mongoose = require("mongoose");
 
+//CREATE new post
 const createPost = async (req, res) => {
   try {
     const post = await Posts.create({
@@ -14,6 +15,7 @@ const createPost = async (req, res) => {
   }
 };
 
+//GET post by id
 const getPostById = async (req, res) => {
   const { id } = req.params;
 
@@ -32,6 +34,7 @@ const getPostById = async (req, res) => {
   }
 };
 
+//GET all posts
 const getPosts = async (req, res) => {
   try {
     if (req.query.sender) {
@@ -45,6 +48,7 @@ const getPosts = async (req, res) => {
   }
 };
 
+// UPDATE post by ID
 const updatePost = async (req, res) => {
   const id = req.params.id;
   const { title, content, sender } = req.body;
