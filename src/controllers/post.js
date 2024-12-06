@@ -1,4 +1,5 @@
 const Posts = require("../models/post.js");
+const mongoose = require('mongoose');
 
 const createPost = async (req, res) => {
   const { title, content, sender } = req.body;
