@@ -1,6 +1,7 @@
-const Posts = require("../models/post.js");
-const mongoose = require('mongoose');
+const Post = require("../models/post.js");
+const mongoose = require("mongoose");
 
+//CREATE new post
 const createPost = async (req, res) => {
   const { title, content, sender } = req.body;
 
@@ -11,10 +12,10 @@ const createPost = async (req, res) => {
   }
 
   try {
-    const post = await Posts.create({
-      title,
-      content,
-      sender,
+    const post = await Post.create({
+      title: req.body.title,
+      content: req.body.content,
+      sender: req.body.sender,
     });
     res.status(201).json(post);
   } catch (error) {
@@ -22,6 +23,7 @@ const createPost = async (req, res) => {
   }
 };
 
+//GET post by id
 const getPostById = async (req, res) => {
   const id = req.params.id;
 
@@ -30,7 +32,7 @@ const getPostById = async (req, res) => {
   }
 
   try {
-    const post = await Posts.findById(id);
+    const post = await Post.findById(id);
     if (!post) {
       return res.status(404).json({ message: "Post not found" });
     }
@@ -40,12 +42,13 @@ const getPostById = async (req, res) => {
   }
 };
 
+//GET all posts
 const getPosts = async (req, res) => {
   try {
     if (req.query.sender) {
-      posts = await Posts.find({ sender: req.query.sender });
+      posts = await Post.find({ sender: req.query.sender });
     } else {
-      posts = await Posts.find();
+      posts = await Post.find();
     }
     res.status(200).json(posts);
   } catch (error) {
@@ -53,6 +56,7 @@ const getPosts = async (req, res) => {
   }
 };
 
+// UPDATE post by ID
 const updatePost = async (req, res) => {
   const id = req.params.id;
   const { title, content, sender } = req.body;
@@ -68,7 +72,7 @@ const updatePost = async (req, res) => {
   }
 
   try {
-    const updatedPost = await Posts.findByIdAndUpdate(
+    const updatedPost = await Post.findByIdAndUpdate(
       id,
       { title, content, sender },
       { new: true }
@@ -82,22 +86,19 @@ const updatePost = async (req, res) => {
   }
 };
 
+// DELETE post by ID
 const deletePost = async (req, res) => {
-  const id = req.params.id;
-
-  if (!mongoose.Types.ObjectId.isValid(id)) {
-    return res.status(400).json({ error: "Invalid id" });
-  }
+  const { id } = req.params;
 
   try {
-    const post = await Posts.findByIdAndDelete(id);
-    if (!post) {
-      return res.status(404).json({ message: "Post not found" });
+    const deletedPost = await Post.findByIdAndDelete(id);
+    if (!deletedPost) {
+      return res.status(404).json({ message: 'Post not found' });
     }
-    res.status(200).json({ message: "Post deleted successfully" });
+    res.status(200).json({ message: 'Post deleted successfully' });
   } catch (error) {
-    res.status(500).json({ message: "Error deleting post", error });
+    res.status(500).json({ message: 'Error deleting post', error });
   }
 };
 
-module.exports = { createPost, getPosts, getPostById, updatePost, deletePost };
+module.exports = { createPost, getPosts, getPostById, updatePost, deletePost};
