@@ -1,10 +1,10 @@
-const Posts = require("../models/post.js");
+const Post = require("../models/post.js");
 const mongoose = require("mongoose");
 
 //CREATE new post
 const createPost = async (req, res) => {
   try {
-    const post = await Posts.create({
+    const post = await Post.create({
       title: req.body.title,
       content: req.body.content,
       sender: req.body.sender,
@@ -24,7 +24,7 @@ const getPostById = async (req, res) => {
   }
 
   try {
-    const post = await Posts.findById(id);
+    const post = await Post.findById(id);
     if (!post) {
       return res.status(404).json({ message: "Post is not found" });
     }
@@ -38,9 +38,9 @@ const getPostById = async (req, res) => {
 const getPosts = async (req, res) => {
   try {
     if (req.query.sender) {
-      posts = await Posts.find({ sender: req.query.sender });
+      posts = await Post.find({ sender: req.query.sender });
     } else {
-      posts = await Posts.find();
+      posts = await Post.find();
     }
     res.status(200).json(posts);
   } catch (error) {
@@ -58,7 +58,7 @@ const updatePost = async (req, res) => {
   }
   
   try {
-    const updatedPost = await Posts.findByIdAndUpdate(
+    const updatedPost = await Post.findByIdAndUpdate(
       id,
       { title, content, sender },
       { new: true }
@@ -72,4 +72,19 @@ const updatePost = async (req, res) => {
   }
 };
 
-module.exports = { createPost, getPosts, getPostById, updatePost };
+// DELETE post by ID
+const deletePost = async (req, res) => {
+  const { id } = req.params;
+
+  try {
+    const deletedPost = await Post.findByIdAndDelete(id);
+    if (!deletedPost) {
+      return res.status(404).json({ message: 'Post not found' });
+    }
+    res.status(200).json({ message: 'Post deleted successfully' });
+  } catch (error) {
+    res.status(500).json({ message: 'Error deleting post', error });
+  }
+};
+
+module.exports = { createPost, getPosts, getPostById, updatePost, deletePost};
